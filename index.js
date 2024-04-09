@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
 
-// เริ่มต้น Express server ที่ port 3000
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+// เริ่มต้น Express server ที่ port 6672
+app.listen(6672, 'http://159.138.235.143/', () => {
+    console.log(`Server is running on http://159.138.235.143:6672`);
+  });
