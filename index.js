@@ -1,13 +1,19 @@
 const express = require('express');
+const rateLimit = require("express-rate-limit");
 const app = express();
-const port = 3000; // หรือพอร์ตที่คุณต้องการ
 
-// เริ่มต้นเสิร์ฟเวอร์
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+
+const limiter = rateLimit({
+    windowMs: 3 * 60 * 1000,
+    max: 5
 });
 
-// สร้างเส้นทาง API
-app.get('/api', (req, res) => {
-    res.send('Hello World!');
+app.use(limiter);
+
+app.get('/', (req, res) => {
+    res.send('Hello User');
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
 });
