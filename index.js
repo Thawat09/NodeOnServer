@@ -20,6 +20,10 @@ const setHeaders = (req, res, next) => {
     'Permissions-Policy',
     'geolocation=(self); microphone=(self); interest-cohort=()'
   );
+  res.setHeader(
+    'Strict-Transport-Security',
+    'max-age=31536000; includeSubDomains'
+  );
   next();
 };
 
