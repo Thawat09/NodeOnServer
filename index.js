@@ -22,7 +22,7 @@ const setHeaders = (req, res, next) => {
   );
   res.setHeader(
     'Strict-Transport-Security',
-    'max-age=31536000; includeSubDomains'
+    'max-age=300; includeSubDomains; preload'
   );
   next();
 };
