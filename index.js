@@ -8,27 +8,6 @@ const app = express();
 const compression = require('compression');
 const indexAPI = require('./src/routes/index.js');
 
-// const test = require('./src/configs/dbPostgreSQL.js');
-// const {postgresDB, sqlServerDB} = require('./src/configs/sequelize.js');
-
-// async function testConnection() {
-//   try {
-//     await postgresDB.authenticate();
-//     console.log('Connection to PostgreSQL has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the PostgreSQL database:', error);
-//   }
-
-//   try {
-//     await sqlServerDB.authenticate();
-//     console.log('Connection to SQL Server has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the SQL Server database:', error);
-//   }
-// }
-// test;
-// testConnection();
-
 const limiter = rateLimit({
   windowMs: 3 * 60 * 1000,
   max: 30,
