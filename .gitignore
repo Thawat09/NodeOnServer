@@ -6,3 +6,4 @@
 .husky
 .editorconfig
 tsconfig.json
+.babelrc
