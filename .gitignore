@@ -1,0 +1,8 @@
+# Ignore file
+.env
+.eslintignore
+.eslintrc.json
+.prettierrc.js
+.husky
+.editorconfig
+tsconfig.json
