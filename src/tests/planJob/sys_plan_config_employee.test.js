@@ -7,19 +7,19 @@ describe('getEmp function', () => {
     status: jest.fn(() => res),
     json: jest.fn(),
   };
-  
+
   const postgresDB = {
     authenticate: jest.fn(),
   };
-  
+
   const sysPlanConfigEmployee = {
     findAll: jest.fn(),
   };
-  
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  
+
   test('should return employees data', async () => {
     req.query = {
       page: 1,
@@ -27,7 +27,7 @@ describe('getEmp function', () => {
       orderBy: 'emp_id',
       type_job: 'Hardware',
     };
-  
+
     const fakeResult = [
       {
         emp_id: "DTC005", 
@@ -59,12 +59,12 @@ describe('getEmp function', () => {
     const countResult = fakeResult.length;
     const pageSize = req.query.pageSize;
     const page = req.query.page;
-  
+
     postgresDB.authenticate.mockResolvedValueOnce();
     sysPlanConfigEmployee.findAll.mockResolvedValueOnce(fakeResult);
-  
+
     await getEmp(req, res);
-  
+
     expect(res.json).toHaveBeenCalledWith({
       code: 200,
       message: "Ok",
@@ -76,5 +76,5 @@ describe('getEmp function', () => {
         totalPages: Math.ceil(countResult / pageSize),
       },
     });
-  });  
+  });
 });
