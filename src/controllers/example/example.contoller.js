@@ -10,7 +10,7 @@ function getApiExampleb(req, res) {
 async function examplePostgreSQL(req, res) {
   try {
     const page = parseInt(req.query.page) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 10;
+    const pageSize = parseInt(req.query.pageSize) || 1000;
     const orderBy = req.query.orderBy || 'emp_code';
 
     await postgresDB.authenticate();
