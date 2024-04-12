@@ -1,30 +1,23 @@
 const {DataTypes, Sequelize} = require('sequelize');
 const {postgresDB} = require('../../configs/sequelize');
+// const MenuPermission = require('./dev_menu_permission.model');
 
-const SysPlanConfigEmployee = postgresDB.define(
-  'sys_plan_config_employee',
+const MenuSys = postgresDB.define(
+  'dev_menu_menusys',
   {
     unid: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
     },
-    emp_id: {
+    title: {
       type: DataTypes.STRING,
     },
-    emp_fname: {
-      type: DataTypes.STRING,
-    },
-    emp_lname: {
-      type: DataTypes.STRING,
-    },
-    emp_nname: {
-      type: DataTypes.STRING,
-    },
-    emp_zone: {
+    ref_mainsys: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
     },
-    emp_department: {
+    url: {
       type: DataTypes.STRING,
     },
     status: {
@@ -48,23 +41,22 @@ const SysPlanConfigEmployee = postgresDB.define(
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       field: 'modify_time',
     },
-    emp_tel: {
-      type: DataTypes.STRING,
-    },
-    emp_mail: {
-      type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-    },
-    new_password: {
-      type: DataTypes.STRING,
+    line: {
+      type: DataTypes.INTEGER,
     },
   },
   {
-    tableName: 'sys_plan_config_employee',
+    tableName: 'dev_menu_menusys',
     timestamps: false,
+    defaultScope: {
+      attributes: {exclude: ['id']},
+    },
   }
 );
 
-module.exports = SysPlanConfigEmployee;
+// MenuSys.hasMany(MenuPermission, {
+//   foreignKey: 'ref_mainsys',
+//   as: 'MenuSys',
+// });
+
+module.exports = MenuSys;

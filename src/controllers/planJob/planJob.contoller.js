@@ -1,6 +1,6 @@
 const {Sequelize, Op} = require('sequelize');
 const {postgresDB} = require('../../configs/sequelize');
-const sysPlanConfigEmployee = require('../../models/postgreSQL/sys_plan_config_employee.model');
+const SysPlanConfigEmployee = require('../../models/postgreSQL/sys_plan_config_employee.model');
 const helperReturn = require('../../helpers/return/returnData');
 
 function getApiPlanJob(req, res) {
@@ -35,7 +35,7 @@ async function getEmp(req, res) {
 
     await postgresDB.authenticate();
 
-    const result = await sysPlanConfigEmployee.findAll({
+    const result = await SysPlanConfigEmployee.findAll({
       attributes: [
         'emp_id',
         [Sequelize.literal("emp_fname || ' ' || emp_lname"), 'emp_name'],

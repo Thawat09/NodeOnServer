@@ -8,7 +8,7 @@ describe('getEmp function', () => {
   };
 
   const postgresDB = {authenticate: jest.fn()};
-  const sysPlanConfigEmployee = {findAll: jest.fn()};
+  const SysPlanConfigEmployee = {findAll: jest.fn()};
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -50,7 +50,7 @@ describe('getEmp function', () => {
     const page = req.query.page;
 
     postgresDB.authenticate.mockResolvedValueOnce();
-    sysPlanConfigEmployee.findAll.mockResolvedValueOnce(fakeResult);
+    SysPlanConfigEmployee.findAll.mockResolvedValueOnce(fakeResult);
 
     await getEmp(req, res);
 
