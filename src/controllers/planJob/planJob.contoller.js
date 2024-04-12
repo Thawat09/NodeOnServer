@@ -65,7 +65,10 @@ async function getEmp(req, res) {
 
     helperReturn.jsonResponse(res, response, 200, 'Ok');
   } catch (error) {
-    console.error('Error connecting to the PostgreSQL database:', error);
+    console.error(
+      'Error connecting to the PostgreSQL database function getEmp:',
+      error
+    );
   }
 }
 

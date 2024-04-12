@@ -15,6 +15,7 @@ const postgresDB = new Sequelize(
       idleTimeoutMillis: 30000,
       acquire: 2000,
     },
+    logging: false,
   }
 );
 
@@ -38,6 +39,7 @@ const sqlServerDB = new Sequelize(
       idleTimeoutMillis: 30000,
       acquire: 2000,
     },
+    logging: false,
   }
 );
 

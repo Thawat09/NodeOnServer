@@ -37,7 +37,10 @@ async function examplePostgreSQL(req, res) {
 
     helperReturn.jsonResponse(res, response, 200, 'Ok');
   } catch (error) {
-    console.error('Unable to connect to the PostgreSQL database:', error);
+    console.error(
+      'Unable to connect to the PostgreSQL database function examplePostgreSQL:',
+      error
+    );
   }
 }
 
@@ -71,7 +74,10 @@ async function exampleServerSQL(req, res) {
 
     helperReturn.jsonResponse(res, response, 200, 'Ok');
   } catch (error) {
-    console.error('Unable to connect to the SQL Server database:', error);
+    console.error(
+      'Unable to connect to the SQL Server database function exampleServerSQL:',
+      error
+    );
   }
 }
 
