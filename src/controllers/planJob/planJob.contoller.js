@@ -13,8 +13,8 @@ async function getEmp(req, res) {
     const pageSize = parseInt(req.query.pageSize) || 1000;
     const orderBy = req.query.orderBy || 'emp_id';
     const type_job = req.query.type_job;
-
     let where = {};
+
     if (type_job === 'Hardware') {
       where = {
         [Sequelize.Op.or]: [{emp_department: 'TS'}, {emp_department: 'ADMIN'}],
@@ -32,8 +32,6 @@ async function getEmp(req, res) {
         ],
       };
     }
-
-    console.log(where);
 
     await postgresDB.authenticate();
 
