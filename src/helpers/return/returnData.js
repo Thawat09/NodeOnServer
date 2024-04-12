@@ -3,8 +3,9 @@ const methods = {
     const responseData = {
       code: status,
       message: message,
-      data,
     };
+
+    Object.assign(responseData, data);
 
     if (res.locals.tokenData) {
       res.header('Access-Control-Expose-Headers', 'X-Custom-Token-Data');

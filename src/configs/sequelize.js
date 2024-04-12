@@ -10,6 +10,11 @@ const postgresDB = new Sequelize(
     dialect: 'postgres',
     port: config.pgsql_port,
     ssl: false,
+    pool: {
+      max: 50,
+      idleTimeoutMillis: 30000,
+      acquire: 2000,
+    },
   }
 );
 
@@ -27,6 +32,11 @@ const sqlServerDB = new Sequelize(
         trustServerCertificate: true,
         enableArithAbort: true,
       },
+    },
+    pool: {
+      max: 50,
+      idleTimeoutMillis: 30000,
+      acquire: 2000,
     },
   }
 );

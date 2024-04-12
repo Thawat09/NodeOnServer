@@ -1,3 +1,4 @@
+const {Sequelize, Op} = require('sequelize');
 const {postgresDB} = require('../../configs/sequelize');
 const sysPlanConfigEmployee = require('../../models/postgreSQL/sys_plan_config_employee.model');
 const helperReturn = require('../../helpers/return/returnData');
@@ -6,20 +7,50 @@ function getApiPlanJob(req, res) {
   res.send('API Plan Job');
 }
 
-async function examplePostgreSQL(req, res) {
+async function getEmp(req, res) {
   try {
     const page = parseInt(req.query.page) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 10;
-    const orderBy = req.query.orderBy || 'emp_code';
+    const pageSize = parseInt(req.query.pageSize) || 1000;
+    const orderBy = req.query.orderBy || 'emp_id';
+    const type_job = req.query.type_job;
+
+    let where = {};
+    if (type_job === 'Hardware') {
+      where = {
+        [Sequelize.Op.or]: [{emp_department: 'TS'}, {emp_department: 'ADMIN'}],
+      };
+    } else if (type_job === 'Software') {
+      where = {
+        [Sequelize.Op.or]: [{emp_department: 'IT'}, {emp_department: 'ADMIN'}],
+      };
+    } else {
+      where = {
+        [Sequelize.Op.or]: [
+          {emp_department: 'TS'},
+          {emp_department: 'IT'},
+          {emp_department: 'ADMIN'},
+        ],
+      };
+    }
+
+    console.log(where);
 
     await postgresDB.authenticate();
 
-    console.log('Connection to PostgreSQL has been established successfully.');
-
     const result = await sysPlanConfigEmployee.findAll({
-      attributes: {exclude: ['id']},
+      attributes: [
+        'emp_id',
+        [Sequelize.literal("emp_fname || ' ' || emp_lname"), 'emp_name'],
+        [
+          Sequelize.literal(`
+            emp_department || ' ' || emp_id || ' ' || emp_fname || ' ' || emp_lname || ' (' || emp_nname || ')'
+          `),
+          'emp_display',
+        ],
+      ],
+      where: {[Op.and]: [{status: '1'}, where]},
       raw: true,
-      order: [[orderBy, 'DESC']],
+      order: [[orderBy, 'ASC']],
       limit: pageSize,
     });
 
@@ -36,8 +67,8 @@ async function examplePostgreSQL(req, res) {
 
     helperReturn.jsonResponse(res, response, 200, 'Ok');
   } catch (error) {
-    console.error('Unable to connect to the PostgreSQL database:', error);
+    console.error('Error connecting to the PostgreSQL database:', error);
   }
 }
 
-module.exports = {getApiPlanJob, examplePostgreSQL};
+module.exports = {getApiPlanJob, getEmp};
