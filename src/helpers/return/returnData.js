@@ -7,12 +7,16 @@ const methods = {
 
     Object.assign(responseData, data);
 
-    if (res.locals.tokenData) {
-      res.header('Access-Control-Expose-Headers', 'X-Custom-Token-Data');
-      res.header('X-Custom-Token-Data', JSON.stringify(res.locals.tokenData));
-    }
+    if (res && res.status && res.json) {
+      if (res.locals && res.locals.tokenData) {
+        res.header('Access-Control-Expose-Headers', 'X-Custom-Token-Data');
+        res.header('X-Custom-Token-Data', JSON.stringify(res.locals.tokenData));
+      }
 
-    res.status(status).json(responseData);
+      res.status(status).json(responseData);
+    } else {
+      console.error('Response object is missing or invalid');
+    }
   },
 };
 
