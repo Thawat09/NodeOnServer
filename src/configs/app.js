@@ -17,6 +17,10 @@ if (mode === 'production') {
     sqlserver_pass: process.env.DB_PASSWORD_SQLSERVER_PROD,
     sqlserver_db: process.env.DB_NAME_SQLSERVER_PROD,
     sqlserver_port: process.env.DB_PORT_SQLSERVER_PROD,
+
+    redis_host: process.env.REDIS_HOST_PROD,
+    redis_pass: process.env.REDIS_PASS_PROD,
+    redis_port: process.env.REDIS_PORT_PROD,
   };
 } else {
   config = {
@@ -31,6 +35,10 @@ if (mode === 'production') {
     sqlserver_pass: process.env.DB_PASSWORD_SQLSERVER_DEV,
     sqlserver_db: process.env.DB_NAME_SQLSERVER_DEV,
     sqlserver_port: process.env.DB_PORT_SQLSERVER_DEV,
+
+    redis_host: process.env.REDIS_HOST_DEV,
+    redis_pass: process.env.REDIS_PASS_DEV,
+    redis_port: process.env.REDIS_PORT_DEV,
   };
 }
 
