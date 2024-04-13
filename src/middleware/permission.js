@@ -1,4 +1,5 @@
 const checkPermission = require('../services/permissionPath/permissionPath.service');
+// const client = require('../configs/redis');
 
 const permissionPath = async (req, res, next) => {
   const userId = req.user.unid;
