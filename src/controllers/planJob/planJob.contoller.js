@@ -1,10 +1,69 @@
 const {Sequelize, Op} = require('sequelize');
 const SysPlanConfigEmployee = require('../../models/postgreSQL/sys_plan_config_employee.model');
+const SysPlanJobMain = require('../../models/postgreSQL/sys_plan_job_main.model');
 const {postgresDB} = require('../../configs/sequelize');
 const helperReturn = require('../../helpers/return/returnData');
 
 function getApiPlanJob(req, res) {
   res.send('API Plan Job');
+}
+
+async function getJobMain(req, res) {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize =
+      parseInt(req.query.pageSize) === 1
+        ? 10
+        : parseInt(req.query.pageSize) || 10;
+    const orderBy = req.query.orderBy || 'main_job_id';
+    // const flag_tab = req.query.flag_tab;
+    // const fill_job_main = req.query.fill_job_main;
+    // const search_info = req.query.search_info;
+
+    await postgresDB.authenticate();
+
+    const jobs = await SysPlanJobMain.findAll({
+      attributes: [
+        'unid',
+        'main_job_id',
+        'ref_doc_so',
+        'customer_billtoparty',
+        'customer_billtodesc',
+        'sim',
+        'truck_no',
+        'truck_province',
+        'type',
+        'type_job',
+        'status',
+        'cs_status',
+        'ref_doc_jb',
+        'cussea',
+        'job_call_finish_date_time',
+        'job_date_time',
+        'job_work_pc',
+      ],
+      order: [[orderBy, 'ASC']],
+      limit: pageSize,
+    });
+
+    const countResult = jobs.length;
+    const response = {
+      data: jobs,
+      metadata: {
+        totalItems: countResult,
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalPages: Math.ceil(countResult / pageSize),
+      },
+    };
+
+    helperReturn.jsonResponse(res, response, 200, 'Ok');
+  } catch (error) {
+    console.error(
+      'Error connecting to the PostgreSQL database function getJobMain:',
+      error
+    );
+  }
 }
 
 async function getEmp(req, res) {
@@ -72,4 +131,4 @@ async function getEmp(req, res) {
   }
 }
 
-module.exports = {getApiPlanJob, getEmp};
+module.exports = {getApiPlanJob, getJobMain, getEmp};
