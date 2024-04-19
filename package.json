@@ -30,6 +30,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@line/bot-sdk": "^9.2.0",
     "async-redis": "^2.0.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.20.2",
