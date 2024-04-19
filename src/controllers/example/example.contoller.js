@@ -1,6 +1,6 @@
-const {postgresDB, sqlServerDB} = require('../../configs/sequelize');
 const EmpInfo = require('../../models/postgreSQL/main_emp_info.model');
 const DtcVSimSuspend = require('../../models/sqlServer/dtc_v_sim_suspend.model');
+const {postgresDB, sqlServerDB} = require('../../configs/sequelize');
 const helperReturn = require('../../helpers/return/returnData');
 
 function getApiExampleb(req, res) {

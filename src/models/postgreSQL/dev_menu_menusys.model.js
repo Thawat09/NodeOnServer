@@ -1,6 +1,5 @@
 const {DataTypes, Sequelize} = require('sequelize');
 const {postgresDB} = require('../../configs/sequelize');
-// const MenuPermission = require('./dev_menu_permission.model');
 
 const MenuSys = postgresDB.define(
   'dev_menu_menusys',
@@ -53,10 +52,5 @@ const MenuSys = postgresDB.define(
     },
   }
 );
-
-// MenuSys.hasMany(MenuPermission, {
-//   foreignKey: 'ref_mainsys',
-//   as: 'MenuSys',
-// });
 
 module.exports = MenuSys;
