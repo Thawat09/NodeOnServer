@@ -21,6 +21,11 @@ if (mode === 'production') {
     redis_host: process.env.REDIS_HOST_PROD,
     redis_pass: process.env.REDIS_PASS_PROD,
     redis_port: process.env.REDIS_PORT_PROD,
+
+    line_token: process.env.CHANNEL_ACCESS_TOKEN_PROD,
+    line_secret: process.env.CHANNEL_SECRET_PROD,
+
+    chat_gpt: process.env.CHAT_GPT_PROD,
   };
 } else {
   config = {
@@ -39,6 +44,11 @@ if (mode === 'production') {
     redis_host: process.env.REDIS_HOST_DEV,
     redis_pass: process.env.REDIS_PASS_DEV,
     redis_port: process.env.REDIS_PORT_DEV,
+
+    line_token: process.env.CHANNEL_ACCESS_TOKEN_DEV,
+    line_secret: process.env.CHANNEL_SECRET_DEV,
+
+    chat_gpt: process.env.CHAT_GPT_DEV,
   };
 }
 

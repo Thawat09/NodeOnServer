@@ -1,7 +1,7 @@
 const EmpInfo = require('../../models/postgreSQL/main_emp_info.model');
 const DtcVSimSuspend = require('../../models/sqlServer/dtc_v_sim_suspend.model');
 const {postgresDB, sqlServerDB} = require('../../configs/sequelize');
-const helperReturn = require('../../helpers/return/returnData');
+const helperReturn = require('../../helpers/return/returnData.helper');
 
 function getApiExampleb(req, res) {
   res.send('API Example');

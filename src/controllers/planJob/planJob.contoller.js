@@ -2,7 +2,7 @@ const {Sequelize, Op} = require('sequelize');
 const SysPlanConfigEmployee = require('../../models/postgreSQL/sys_plan_config_employee.model');
 const SysPlanJobMain = require('../../models/postgreSQL/sys_plan_job_main.model');
 const {postgresDB} = require('../../configs/sequelize');
-const helperReturn = require('../../helpers/return/returnData');
+const helperReturn = require('../../helpers/return/returnData.helper');
 
 function getApiPlanJob(req, res) {
   res.send('API Plan Job');
