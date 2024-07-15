@@ -45,3 +45,5 @@ app.use(indexAPI);
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
+
+//! อยากทำแบบตอบคำถามโดยใช้เครื่องมือ User Activity Monitoring, Time Limits, Webcam และ Screen Monitoring เพื่อมาตรวจสอบการทุจริต
